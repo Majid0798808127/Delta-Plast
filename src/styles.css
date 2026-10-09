@@ -43,10 +43,12 @@
 }
 
 :root {
-  /* User-locked palette: white #FFFFFF, gray #F2F2F2, red #B83232, ink #202020. */
+  /* Theme: Luxury Emerald Green & Industrial Dark Contrast */
   --background: oklch(1 0 0);
   --foreground: oklch(0.2435 0 0);
-  --primary: oklch(0.5266 0.1724 26.96);
+  --primary: oklch(0.56 0.195 152);
+  --primary-bright: oklch(0.68 0.22 150);
+  --primary-deep: oklch(0.42 0.17 154);
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.9612 0 0);
   --card: var(--background);
@@ -54,7 +56,7 @@
   --border: oklch(0.885 0 0);
   --input: oklch(0.80 0 0);
   --whatsapp: oklch(0.59 0.15 151);
-  --mint: oklch(0.892 0.049 170);
+  --mint: oklch(0.90 0.05 160);
   --radius: 0.5rem;
   --brand-radius: 1rem;
   --stat-radius: 1.75rem;
@@ -87,26 +89,25 @@
   --glass-highlight: oklch(1 0 0 / 0.8);
   --nav-surface: oklch(1 0 0 / 0.36);
   --nav-border: oklch(0.92 0.003 286 / 0.5);
-  --nav-active-surface: color-mix(in oklab, var(--primary) 9%, var(--background));
-  --nav-active-border: color-mix(in oklab, var(--primary) 28%, var(--border));
+  --nav-active-surface: color-mix(in oklab, var(--primary) 12%, var(--background));
+  --nav-active-border: color-mix(in oklab, var(--primary) 32%, var(--border));
   --shadow-glass: 0 20px 40px -15px oklch(0 0 0 / 0.07), inset 0 1px 0 var(--glass-highlight);
   --shadow-nav: inset 0 1px 2px oklch(0 0 0 / 0.025), 0 2px 3px oklch(0 0 0 / 0.025);
-  --shadow-nav-hover: 0 6px 12px -4px oklch(0 0 0 / 0.12), inset 0 1px 0 var(--glass-highlight);
+  --shadow-nav-hover: 0 6px 14px -4px oklch(0.56 0.195 152 / 0.25), inset 0 1px 0 var(--glass-highlight);
   --header-radius: 1rem;
   --nav-radius: 0.75rem;
   --motion-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
   --header-offset: 116px;
   --field-surface: oklch(0.985 0.002 286 / 0.7);
   --field-border: oklch(0.92 0.003 286 / 0.9);
-  --field-ring: color-mix(in oklab, var(--primary) 12%, transparent);
+  --field-ring: color-mix(in oklab, var(--primary) 16%, transparent);
   --contact-radius: 1.5rem;
   --field-radius: 0.75rem;
   --shadow-field: inset 0 1px 2px oklch(0 0 0 / 0.03);
   --shadow-contact: 0 20px 50px -15px oklch(0 0 0 / 0.06), inset 0 1px 0 var(--card-highlight);
-  --primary-bright: color-mix(in oklab, var(--primary) 85%, oklch(0.68 0.22 27));
-  --gradient-action: linear-gradient(110deg, var(--primary), var(--primary-bright));
-  --shadow-action: 0 10px 25px -5px color-mix(in oklab, var(--primary) 35%, transparent), inset 0 1px 0 oklch(1 0 0 / 0.25);
-  --shadow-action-hover: 0 15px 30px -5px color-mix(in oklab, var(--primary) 45%, transparent), inset 0 1px 0 oklch(1 0 0 / 0.25);
+  --gradient-action: linear-gradient(135deg, oklch(0.55 0.19 152) 0%, oklch(0.66 0.22 150) 100%);
+  --shadow-action: 0 10px 25px -5px oklch(0.56 0.195 152 / 0.42), inset 0 1px 0 oklch(1 0 0 / 0.3);
+  --shadow-action-hover: 0 16px 36px -5px oklch(0.56 0.195 152 / 0.58), inset 0 1px 0 oklch(1 0 0 / 0.4);
 }
 
 .dark {
@@ -245,6 +246,56 @@ html[lang="en"] h3 {
   color: var(--muted-foreground);
   margin-top: 6px;
   line-height: 1.45;
+}
+
+/* Dark Atmosphere Luxury Hero */
+.gallery-cover.hero-dark-luxury {
+  display: flex !important;
+  flex-direction: column !important;
+  background: #050505 !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+  box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.85), 0 0 80px -25px rgba(16, 185, 129, 0.22) !important;
+  transition: border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.gallery-cover.hero-dark-luxury:hover {
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  box-shadow: 0 30px 85px -15px rgba(0, 0, 0, 0.9), 0 0 110px -20px rgba(16, 185, 129, 0.32) !important;
+}
+
+.gallery-cover.hero-dark-luxury .gallery-copy .lively-heading {
+  color: #ffffff !important;
+}
+
+.gallery-cover.hero-dark-luxury .gallery-copy .cover-description {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.gallery-cover.hero-dark-luxury .gallery-secondary {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+.gallery-cover.hero-dark-luxury .gallery-secondary:hover {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+  color: #6ee7b7 !important;
+}
+
+.gallery-cover.hero-dark-luxury .gallery-metrics {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+.gallery-cover.hero-dark-luxury .gallery-metrics strong {
+  color: #ffffff !important;
+}
+
+.gallery-cover.hero-dark-luxury .gallery-metrics .metric-label {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.gallery-cover.hero-dark-luxury .gallery-visual {
+  background: transparent !important;
 }
 
 .gallery-standard {
@@ -631,29 +682,39 @@ html[dir="ltr"] .sculpture-scene canvas {
   border: 1px solid var(--clay-border);
   border-radius: var(--clay-radius);
   overflow: hidden;
-  box-shadow: var(--shadow-clay-lift);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 16px 36px -10px rgba(0, 0, 0, 0.08), inset 0 2px 0 rgba(255, 255, 255, 1);
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 450ms cubic-bezier(0.16, 1, 0.3, 1), border-color 300ms ease;
+}
+
+.sector-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.14), 0 0 35px -6px rgba(16, 185, 129, 0.22), inset 0 2px 0 rgba(255, 255, 255, 1);
+  border-color: rgba(16, 185, 129, 0.45);
 }
 
 .sector-figure {
   position: relative;
   margin: 14px 14px 0;
-  border-radius: 1rem;
+  border-radius: 1.25rem;
   background: linear-gradient(180deg, #fbfbfb 0%, #f1f1f4 100%);
   border: 1px solid rgba(228, 228, 231, 0.7);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(255, 255, 255, 0.9);
   overflow: hidden;
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .sector-figure img {
   width: 100%;
   aspect-ratio: 1.5;
-  filter: var(--popout-shadow);
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
   transition: transform 500ms cubic-bezier(0.2, 1, 0.3, 1), filter 500ms ease;
 }
 
 .sector-card:hover .sector-figure img {
-  transform: scale(1.045) translateY(-3px) translate3d(calc(var(--dx, 0px)*0.5), calc(var(--dy, 0px)*0.5), 0);
-  filter: var(--popout-shadow-hover);
+  transform: scale(1.05);
 }
 
 .sector-number {
@@ -674,8 +735,16 @@ html[dir="ltr"] .sculpture-scene canvas {
   background: linear-gradient(180deg, #ffffff 0%, #f4f4f5 100%);
   border: 1px solid rgba(228, 228, 231, 0.95);
   border-radius: 9999px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), inset 0 1.5px 0 rgba(255, 255, 255, 1), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08), inset 0 1.5px 0 rgba(255, 255, 255, 1);
+  transform: translateZ(45px);
   z-index: 10;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.sector-card:hover .sector-number {
+  transform: translateZ(60px) scale(1.08);
+  color: var(--primary) !important;
+  border-color: rgba(16, 185, 129, 0.4);
 }
 
 .sector-details {
@@ -701,19 +770,35 @@ html[dir="ltr"] .sculpture-scene canvas {
   border: 1px solid var(--clay-border);
   border-radius: var(--stat-radius);
   background: var(--clay-surface);
-  box-shadow: var(--shadow-clay-lift);
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.05), 0 20px 40px -12px rgba(0, 0, 0, 0.07), inset 0 2px 0 rgba(255, 255, 255, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 450ms ease, border-color 300ms ease;
+}
+
+.fact-card.tilt3d:hover {
+  transform: translateY(-12px) scale(1.025) !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.14), 0 0 40px -8px rgba(16, 185, 129, 0.22), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
 }
 
 .fact-icon {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--brand-radius);
   border: 1px solid var(--card-border);
-  background: var(--cover-surface);
+  background: linear-gradient(135deg, #ffffff 0%, #f4f4f5 100%);
   color: var(--primary);
-  box-shadow: var(--shadow-nav);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), inset 0 1.5px 0 rgba(255, 255, 255, 1);
+  transform: translateZ(30px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.fact-card.tilt3d:hover .fact-icon {
+  transform: translateZ(45px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25), inset 0 1.5px 0 rgba(255, 255, 255, 1);
 }
 
 .fact-metric {
@@ -722,6 +807,13 @@ html[dir="ltr"] .sculpture-scene canvas {
   gap: 4px;
   margin-top: 24px;
   min-height: 72px;
+  transform: translateZ(40px);
+  transform-style: preserve-3d;
+  transition: transform 0.35s ease;
+}
+
+.fact-card.tilt3d:hover .fact-metric {
+  transform: translateZ(55px) scale(1.05);
 }
 
 .fact-metric strong {
@@ -729,6 +821,10 @@ html[dir="ltr"] .sculpture-scene canvas {
   line-height: 1.2;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
+  background: linear-gradient(180deg, #18181b 0%, #27272a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
 }
 
 @media (max-width:1100px) {
@@ -790,6 +886,10 @@ html[dir="ltr"] .sculpture-scene canvas {
   height: 100%;
   perspective: 1100px;
   isolation: isolate;
+  border-radius: inherit;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .tilt3d {
@@ -931,10 +1031,11 @@ html[dir="ltr"] .sculpture-scene canvas {
 
 .certificate-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  max-width: 1000px;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  gap: 14px;
+  max-width: 1360px;
   margin: 32px auto 0;
+  width: 100%;
 }
 
 .certificate-card {
@@ -943,36 +1044,53 @@ html[dir="ltr"] .sculpture-scene canvas {
   border-radius: 20px;
   background: var(--clay-surface);
   border: 1px solid var(--clay-border);
-  box-shadow: var(--shadow-clay-lift);
-  overflow: hidden;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.05), 0 16px 32px -10px rgba(0, 0, 0, 0.08), inset 0 2px 0 rgba(255, 255, 255, 1);
+  overflow: visible !important;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms ease, border-color 300ms ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-12px) scale(1.03) !important;
+  box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.15), 0 0 35px -5px rgba(16, 185, 129, 0.28), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
 }
 
 .certificate-link {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 14px;
+  padding: 12px;
+  transform-style: preserve-3d;
 }
 
 .certificate-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2px 10px;
+  padding: 0 2px 8px;
   font-size: 11px;
   color: var(--muted-foreground);
+  transform: translateZ(25px);
 }
 
 .certificate-image {
   width: 100%;
   aspect-ratio: 3/4;
-  max-height: 280px;
-  padding: 10px;
+  max-height: 220px;
+  padding: 8px;
   border: 1px solid rgba(228, 228, 231, 0.7);
   border-radius: 14px;
   background: linear-gradient(180deg, #fafafa 0%, #f4f4f5 100%);
-  box-shadow: inset 0 1.5px 3px rgba(0, 0, 0, 0.03);
-  overflow: hidden;
+  box-shadow: inset 0 1.5px 3px rgba(0, 0, 0, 0.03), 0 3px 8px rgba(0, 0, 0, 0.04);
+  transform: translateZ(25px);
+  transition: transform 350ms ease, box-shadow 350ms ease;
+}
+
+.certificate-card:hover .certificate-image {
+  transform: translateZ(45px) scale(1.04);
+  box-shadow: 0 12px 24px -5px rgba(0, 0, 0, 0.16);
 }
 
 .certificate-image img {
@@ -980,13 +1098,17 @@ html[dir="ltr"] .sculpture-scene canvas {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: var(--popout-shadow);
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.08));
   transition: transform 400ms cubic-bezier(0.2, 1, 0.3, 1), filter 400ms ease;
 }
 
 .certificate-card:hover .certificate-image img {
-  transform: scale(1.035) translateY(-2px);
-  filter: var(--popout-shadow-hover);
+  transform: scale(1.05) translateY(-2px);
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.14));
+}
+
+.certificate-details {
+  transform: translateZ(30px);
 }
 
 .tactile-badge {
@@ -1385,6 +1507,7 @@ html[dir="ltr"] .cinematic-copy {
     opacity: 0;
     transform: translateY(28px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -1504,9 +1627,20 @@ html[dir="ltr"] .cinematic-copy {
   }
 
   .certificate-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 14px;
     margin-top: 24px;
+    padding-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .certificate-card {
+    flex: 0 0 185px !important;
+    min-width: 185px !important;
+    scroll-snap-align: start;
   }
 
   .certificate-link {
@@ -1539,10 +1673,356 @@ html[dir="ltr"] .cinematic-copy {
   }
 }
 
+/* Custom Floating Animations for Hero Atmosphere */
+@keyframes float-hand-left {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-18px) rotate(2deg);
+  }
+}
+
+@keyframes float-hand-right {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(18px) rotate(-2deg);
+  }
+}
+
+.animate-float-left {
+  animation: float-hand-left 12s ease-in-out infinite;
+}
+
+.animate-float-right {
+  animation: float-hand-right 14s ease-in-out infinite;
+}
+
+/* Luxury Shimmer Sweep Animation */
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  28%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  animation: shimmer-sweep 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+/* Emerald Pulse Breathing Animation */
+@keyframes emerald-breathe {
+  0%, 100% {
+    box-shadow: 0 0 25px -4px rgba(16, 185, 129, 0.35), 0 0 60px -10px rgba(16, 185, 129, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 38px 0px rgba(16, 185, 129, 0.55), 0 0 85px -5px rgba(16, 185, 129, 0.25);
+  }
+}
+
+.animate-emerald-glow {
+  animation: emerald-breathe 4s ease-in-out infinite;
+}
+
+/* Floating Ambient Motion */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) scale(1.02);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+/* Subtle Ken Burns Zoom for Hero Slider */
+@keyframes subtle-zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.07);
+  }
+}
+
+.animate-subtle-zoom {
+  animation: subtle-zoom 6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* ========================================================
+   HIGH-END 3D TACTILE STYLING (ENTERPRISE / LUXURY SUITE)
+   ======================================================== */
+
+/* 1. 5 Production Sector Cards */
+.sector-card {
+  position: relative;
+  background: var(--clay-surface) !important;
+  border: 1px solid var(--clay-border) !important;
+  border-radius: var(--clay-radius) !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 20px 42px -10px rgba(0, 0, 0, 0.08), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 450ms cubic-bezier(0.16, 1, 0.3, 1), border-color 300ms ease !important;
+}
+
+.sector-card:hover {
+  transform: translateY(-8px) scale(1.01) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+  box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.16), 0 0 35px -6px rgba(16, 185, 129, 0.25), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
+}
+
+.sector-figure {
+  position: relative;
+  margin: 14px 14px 0;
+  border-radius: 1.25rem;
+  background: linear-gradient(180deg, #fbfbfb 0%, #f1f1f4 100%);
+  border: 1px solid rgba(228, 228, 231, 0.8);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(255, 255, 255, 0.9);
+  overflow: hidden !important;
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.sector-figure img {
+  width: 100%;
+  aspect-ratio: 1.5;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: transform 500ms cubic-bezier(0.2, 1, 0.3, 1), filter 500ms ease !important;
+}
+
+.sector-card:hover .sector-figure img {
+  transform: scale(1.05) !important;
+}
+
+.sector-number {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1.5px 0 rgba(255, 255, 255, 1) !important;
+  transition: transform 0.35s ease, background 0.35s ease, color 0.35s ease, border-color 0.35s ease !important;
+}
+
+.sector-card:hover .sector-number {
+  transform: scale(1.06) !important;
+  color: var(--primary) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+}
+
+.sector-details {
+  position: relative;
+}
+
+/* 3. Delta Plast in Numbers (Facts & Figures 3D) */
+.fact-card.tilt3d {
+  height: 100%;
+  padding: 30px 26px;
+  border: 1px solid var(--clay-border) !important;
+  border-radius: var(--stat-radius) !important;
+  background: var(--clay-surface) !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.05), 0 20px 42px -12px rgba(0, 0, 0, 0.07), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
+  transform-style: preserve-3d !important;
+  perspective: 1200px !important;
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 450ms ease, border-color 300ms ease !important;
+}
+
+.fact-card.tilt3d:hover {
+  transform: translateY(-14px) scale(1.025) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+  box-shadow: 0 32px 65px -15px rgba(0, 0, 0, 0.16), 0 0 45px -8px rgba(16, 185, 129, 0.25), inset 0 2.5px 0 rgba(255, 255, 255, 1) !important;
+}
+
+.fact-icon {
+  transform: translateZ(40px) !important;
+  transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+}
+
+.fact-card.tilt3d:hover .fact-icon {
+  transform: translateZ(65px) scale(1.14) !important;
+  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.28), inset 0 1.5px 0 rgba(255, 255, 255, 1) !important;
+}
+
+.fact-metric {
+  transform: translateZ(45px) !important;
+  transform-style: preserve-3d !important;
+  transition: transform 0.35s ease !important;
+}
+
+.fact-card.tilt3d:hover .fact-metric {
+  transform: translateZ(68px) scale(1.06) !important;
+}
+
+/* 4. Certifications Single Row & 3D Tactile Elevation */
+.certificate-card {
+  min-width: 0;
+  position: relative;
+  border-radius: 20px;
+  background: var(--clay-surface) !important;
+  border: 1px solid var(--clay-border) !important;
+  box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.05), 0 16px 32px -10px rgba(0, 0, 0, 0.08), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
+  overflow: visible !important;
+  transform-style: preserve-3d !important;
+  perspective: 1000px !important;
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms ease, border-color 300ms ease !important;
+}
+
+.certificate-card:hover {
+  transform: translateY(-12px) scale(1.03) !important;
+  box-shadow: 0 26px 52px -10px rgba(0, 0, 0, 0.15), 0 0 35px -5px rgba(16, 185, 129, 0.28), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+}
+
+@media (max-width: 1100px) {
+  .certificate-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    gap: 16px !important;
+    padding-bottom: 20px !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+
+  .certificate-card {
+    flex: 0 0 195px !important;
+    min-width: 195px !important;
+    scroll-snap-align: start;
+  }
+}
+
+/* 5. Brands Marquee Cards 3D */
+.brand-card {
+  position: relative;
+  height: 310px;
+  border: 1px solid var(--clay-border) !important;
+  border-radius: 24px !important;
+  background: var(--clay-surface) !important;
+  box-shadow: 0 6px 20px -4px rgba(0, 0, 0, 0.05), 0 16px 36px -10px rgba(0, 0, 0, 0.07), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
+  overflow: visible !important;
+  transform-style: preserve-3d !important;
+  perspective: 1000px !important;
+  transition: transform 450ms cubic-bezier(0.2, 1, 0.3, 1), box-shadow 450ms cubic-bezier(0.2, 1, 0.3, 1), border-color 300ms ease !important;
+}
+
+.brand-card:hover {
+  transform: translateY(-12px) scale(1.025) !important;
+  box-shadow: 0 28px 58px -12px rgba(0, 0, 0, 0.15), 0 0 38px -6px rgba(16, 185, 129, 0.22), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+}
+
+.brand-logo-stage {
+  transform: translateZ(35px) !important;
+  transform-style: preserve-3d !important;
+}
+
+.brand-logo-stage img {
+  transform: translateZ(25px) !important;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.08)) !important;
+  transition: transform 350ms cubic-bezier(0.2, 1, 0.3, 1), filter 350ms ease !important;
+}
+
+.brand-card:hover .brand-logo-stage img {
+  transform: translateZ(50px) scale(1.1) translateY(-4px) !important;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.14)) !important;
+}
+
+.brand-index {
+  transform: translateZ(45px) !important;
+}
+
+.brand-details {
+  transform: translateZ(30px) !important;
+}
+
+/* 6. Factory Machine Image Frame */
+.factory-figure-container {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.factory-figure {
+  margin: 0;
+  width: 100%;
+}
+
+.factory-figure img {
+  width: 100%;
+  aspect-ratio: 21/10;
+  object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.2, 1, 0.3, 1) !important;
+}
+
+.factory-figure:hover img {
+  transform: scale(1.03) !important;
+}
+
+/* 7. Contact Info & Form Cards */
+.contact-info,
+.contact-form {
+  min-width: 0;
+  border: 1px solid var(--clay-border) !important;
+  border-radius: var(--contact-radius) !important;
+  background: var(--clay-surface) !important;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 20px 48px -12px rgba(0, 0, 0, 0.09), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
+  overflow: hidden !important;
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 450ms ease, border-color 300ms ease !important;
+}
+
+.contact-info:hover,
+.contact-form:hover {
+  transform: translateY(-6px) scale(1.008) !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  box-shadow: 0 26px 55px -12px rgba(0, 0, 0, 0.12), 0 0 35px -6px rgba(16, 185, 129, 0.2), inset 0 2px 0 rgba(255, 255, 255, 1) !important;
+}
+
+.contact-row {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease !important;
+}
+
+.contact-row:hover {
+  transform: translateY(-2px) !important;
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+}
+
+.contact-map {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--field-border) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+.contact-field {
+  transform: translateZ(20px) !important;
+}
+
 @media (prefers-reduced-motion:reduce) {
   html {
     scroll-behavior: auto;
   }
+
+  .animate-float-left,
+  .animate-float-right,
 
   .rise,
   .lively-header,

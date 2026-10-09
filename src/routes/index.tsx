@@ -5,6 +5,7 @@ import { ArrowUp, ArrowUpRight, Box, Check, ChevronDown, Cog, Globe, Leaf, Mail,
 import { Button } from "@/components/ui/button";
 import { BrandMarquee } from "@/components/brand-marquee";
 import { StatCount } from "@/components/stat-count";
+import { HeroSlider } from "@/components/HeroSlider";
 import banoonToys from "@/assets/banoon-toys.jpg.asset.json";
 import sector1 from "@/assets/s1.jpg";
 import sector2 from "@/assets/s2.jpg";
@@ -264,12 +265,12 @@ function Tilt3D({ children, className = "" }: { children: ReactNode; className?:
     const r = el.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width;
     const py = (e.clientY - r.top) / r.height;
-    el.style.setProperty("--rx", `${(0.5 - py) * 7}deg`);
-    el.style.setProperty("--ry", `${(px - 0.5) * 7}deg`);
+    el.style.setProperty("--rx", `${(0.5 - py) * 12}deg`);
+    el.style.setProperty("--ry", `${(px - 0.5) * 12}deg`);
     el.style.setProperty("--px", `${px * 100}%`);
     el.style.setProperty("--py", `${py * 100}%`);
-    el.style.setProperty("--dx", `${(px - 0.5) * 10}px`);
-    el.style.setProperty("--dy", `${(py - 0.5) * 10}px`);
+    el.style.setProperty("--dx", `${(px - 0.5) * 16}px`);
+    el.style.setProperty("--dy", `${(py - 0.5) * 16}px`);
   };
   const leave = () => {
     const el = ref.current;
@@ -578,12 +579,12 @@ function Index() {
     <div id="top" className="relative min-h-screen bg-background text-foreground overflow-x-clip">
       {/* 3. Atmospheric Industrial Depth Orbs */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
-        {/* Soft Brand Crimson Depth Orb */}
-        <div className="absolute -top-32 start-[-8%] size-[680px] rounded-full bg-[radial-gradient(circle,rgba(220,38,38,0.038)_0%,transparent_70%)] blur-3xl" />
-        {/* Soft Industrial Zinc/Teal Depth Orb */}
-        <div className="absolute top-[38%] end-[-10%] size-[780px] rounded-full bg-[radial-gradient(circle,rgba(20,184,166,0.028)_0%,transparent_70%)] blur-3xl" />
+        {/* Soft Brand Emerald Depth Orb */}
+        <div className="absolute -top-32 start-[-8%] size-[680px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.065)_0%,transparent_70%)] blur-3xl animate-float-slow" />
+        {/* Soft Industrial Emerald/Teal Depth Orb */}
+        <div className="absolute top-[38%] end-[-10%] size-[780px] rounded-full bg-[radial-gradient(circle,rgba(5,150,105,0.05)_0%,transparent_70%)] blur-3xl" />
         {/* Soft Lower Ambient Depth Orb */}
-        <div className="absolute bottom-[-5%] start-[18%] size-[600px] rounded-full bg-[radial-gradient(circle,rgba(220,38,38,0.022)_0%,transparent_70%)] blur-3xl" />
+        <div className="absolute bottom-[-5%] start-[18%] size-[600px] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.045)_0%,transparent_70%)] blur-3xl animate-float-slow [animation-delay:3.5s]" />
       </div>
 
       <div className="relative z-10 lively-shell">
@@ -611,7 +612,7 @@ function Index() {
                 alt="Delta Plast"
                 width={1005}
                 height={588}
-                className="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform duration-300 hover:scale-105"
+                className="h-[44px] sm:h-[48px] md:h-[52px] w-auto object-contain transition-transform duration-300 hover:scale-105 select-none"
               />
             </a>
 
@@ -658,7 +659,7 @@ function Index() {
               </Button>
               <Button
                 asChild
-                className="hidden sm:inline-flex h-9 px-5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs shadow-sm"
+                className="hidden sm:inline-flex h-9 px-5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs shadow-md shadow-primary/25 animate-shimmer hover:scale-105 active:scale-95 transition-all"
               >
                 <a href="#contact" onClick={scrollTo("contact")}>
                   {t.quote}
@@ -694,8 +695,8 @@ function Index() {
                       href={`#${id}`}
                       onClick={scrollTo(id)}
                       className={`flex items-center justify-center p-3.5 text-sm rounded-2xl transition-all min-h-[44px] ${isActive
-                          ? "bg-foreground text-background shadow-sm font-bold"
-                          : "bg-secondary text-foreground hover:bg-secondary/80 font-medium"
+                        ? "bg-foreground text-background shadow-sm font-bold"
+                        : "bg-secondary text-foreground hover:bg-secondary/80 font-medium"
                         }`}
                     >
                       {n}
@@ -707,8 +708,8 @@ function Index() {
                   href={`#${navIds[4]}`}
                   onClick={scrollTo(navIds[4]!)}
                   className={`col-span-2 flex items-center justify-center gap-2 p-3.5 text-sm rounded-2xl transition-all min-h-[44px] ${activeSection === navIds[4]
-                      ? "bg-primary text-primary-foreground shadow-md font-bold"
-                      : "bg-primary text-primary-foreground hover:bg-primary/90 font-bold shadow-sm"
+                    ? "bg-primary text-primary-foreground shadow-md font-bold"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90 font-bold shadow-sm"
                     }`}
                 >
                   {t.quote}
@@ -723,57 +724,15 @@ function Index() {
         </div>
 
         <main>
-          {/* 1. Hero Cover with slow cinematic entrance */}
-          <section id="hero" className="gallery-cover" aria-label={t.company}>
-            <div className="gallery-copy cinematic-copy">
-              <div className="hero-fade-up [animation-delay:150ms]">
-                <Pill>{t.eyebrow}</Pill>
-              </div>
-              <h1 className="lively-heading hero-fade-up [animation-delay:350ms]">
-                <span className="hero-line">{t.h1a}</span>
-                <span className="hero-line block text-primary">{t.h1b}</span>
-              </h1>
-              <p className="cover-description hero-fade-up [animation-delay:550ms]">{t.sub}</p>
-              <div className="hero-actions mt-8 flex flex-wrap gap-3 hero-fade-up [animation-delay:750ms]">
-                <Button asChild className="gallery-cta">
-                  <a href="#contact" onClick={scrollTo("contact")}>
-                    {t.quote}
-                    <ArrowUpRight className="size-4 rtl:-scale-x-100" />
-                  </a>
-                </Button>
-                <Button asChild variant="ghost" className="gallery-secondary">
-                  <a href="#sectors" onClick={scrollTo("sectors")}>
-                    {t.secLink}
-                    <ArrowUpRight className="size-4 rtl:-scale-x-100" />
-                  </a>
-                </Button>
-              </div>
-              <div className="gallery-metrics hero-fade-up [animation-delay:950ms]">
-                <div>
-                  <strong className="font-latin"><StatCount target="5" duration={3200} delay={300} /></strong>
-                  <span className="metric-label">{t.rail[0]}</span>
-                </div>
-                <div>
-                  <strong className="font-latin"><StatCount target="6" duration={3200} delay={450} /></strong>
-                  <span className="metric-label">{t.rail[1]}</span>
-                </div>
-                <div>
-                  <strong className="font-latin"><StatCount target="35" duration={3600} delay={600} /></strong>
-                  <span className="metric-label">{t.rail[2]}</span>
-                </div>
-              </div>
-            </div>
-            <div className="gallery-visual cinematic-visual">
-              <figure className="gallery-main-image hero-fade-up [animation-delay:400ms]">
-                <img src={building.url} alt={t.company} width={1920} height={990} className="image-popout" />
-                <figcaption>
-                  <span>{t.company}</span>
-                  <a href={MAP} target="_blank" rel="noreferrer" aria-label={t.map}>
-                    <ArrowUpRight className="size-5 rtl:-scale-x-100" />
-                  </a>
-                </figcaption>
-              </figure>
-              <span className="gallery-edge-label" dir="ltr">Delta Plast · JORDAN</span>
+          {/* 1. Hero Cover with dark atmosphere, floating elements, and interactive slider */}
+          {/* 1. Hero Cover with full-frame interactive slider matching user's exact mockup */}
+          <section
+            id="hero"
+            className="gallery-cover hero-dark-luxury relative overflow-hidden bg-[#050505] border border-border/70 shadow-2xl"
+            aria-label={t.company}
+          >
+            <div className="relative z-20 w-full hero-fade-up">
+              <HeroSlider lang={lang} t={t} scrollTo={scrollTo} />
             </div>
           </section>
 
@@ -969,9 +928,27 @@ function Index() {
                   <ArrowUpRight className="size-4 rtl:-scale-x-100" />
                 </a>
               </div>
-              <figure className="factory-figure">
-                <img src={factoryMachine} alt={t.company} width={1024} height={434} loading="lazy" className="rounded-2xl border border-border shadow-sm object-cover w-full aspect-[21/10]" />
-                <figcaption>{t.company} — أحدث خطوط الإنتاج والتقنيات الصناعية</figcaption>
+              <figure className="factory-figure relative group w-full">
+                <Tilt3D className="rounded-2xl overflow-hidden border border-border/80 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18),0_0_35px_-5px_rgba(16,185,129,0.15),inset_0_2px_0_rgba(255,255,255,0.9)] transition-all duration-500 hover:border-emerald-500/50 hover:shadow-[0_30px_70px_-10px_rgba(0,0,0,0.25),0_0_50px_-5px_rgba(16,185,129,0.3)]">
+                  <div className="relative overflow-hidden w-full">
+                    <img
+                      src={factoryMachine}
+                      alt={t.company}
+                      width={1024}
+                      height={434}
+                      loading="lazy"
+                      className="object-cover w-full aspect-[21/10] transition-transform duration-700 ease-out hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-white/10 pointer-events-none opacity-60 hover:opacity-30 transition-opacity" />
+                  </div>
+                </Tilt3D>
+                <figcaption className="mt-3.5 text-xs text-muted-foreground flex items-center justify-between">
+                  <span>{t.company} — أحدث خطوط الإنتاج والتقنيات الصناعية</span>
+                  <span className="inline-flex items-center gap-1.5 text-emerald-600 font-semibold text-xs">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
+                    3D Interactive
+                  </span>
+                </figcaption>
               </figure>
             </Reveal>
           </section>
@@ -986,7 +963,7 @@ function Index() {
               <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">{t.rfqP}</p>
             </Reveal>
             <div className="contact-panel mt-10">
-              <div className="contact-info">
+              <Tilt3D className="contact-info h-full">
                 <ul className="contact-list">
                   {[
                     { I: Phone, v: "+962 79 7440088", h: "tel:+962797440088", ltr: true },
@@ -1023,10 +1000,10 @@ function Index() {
                     <ArrowUpRight className="size-4 rtl:-scale-x-100" />
                   </a>
                 </Button>
-              </div>
-              <div className="contact-form">
+              </Tilt3D>
+              <Tilt3D className="contact-form h-full">
                 <QuoteForm f={t.f} />
-              </div>
+              </Tilt3D>
             </div>
           </section>
         </main>
@@ -1047,7 +1024,7 @@ function Index() {
       <Button
         asChild
         size="icon"
-        className="fixed bottom-6 end-5 z-40 size-12 rounded-full bg-whatsapp text-primary-foreground shadow-lift hover:bg-whatsapp/90"
+        className="fixed bottom-6 end-5 z-40 size-13 rounded-full bg-whatsapp text-primary-foreground shadow-[0_10px_25px_rgba(16,185,129,0.45)] ring-4 ring-emerald-500/25 hover:ring-emerald-500/50 hover:scale-110 active:scale-95 transition-all duration-300"
       >
         <a href={WA} target="_blank" rel="noreferrer" aria-label="WhatsApp">
           <MessageCircle />
