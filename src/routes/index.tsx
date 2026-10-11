@@ -595,31 +595,31 @@ function Index() {
         >
           <header
             ref={headerRef}
-            className={`relative flex items-center justify-between gap-3 px-4 py-2.5 sm:px-6 sm:py-3 backdrop-blur-2xl border rounded-2xl transition-all duration-300 ${scrolled
-                ? "bg-[#02140e]/95 border-emerald-500/40 shadow-[0_16px_40px_rgba(0,0,0,0.8),0_0_25px_rgba(16,185,129,0.2)]"
-                : "bg-[#02140e]/85 border-emerald-500/25 shadow-[0_10px_32px_rgba(0,0,0,0.6),0_0_18px_rgba(16,185,129,0.12)]"
+            className={`relative flex items-center justify-between gap-3 px-4 py-2 sm:px-6 sm:py-2.5 backdrop-blur-2xl border rounded-full transition-all duration-300 ${scrolled
+              ? "bg-background/95 border-border shadow-[0_12px_36px_rgba(0,0,0,0.1)]"
+              : "bg-background/85 border-border/80 shadow-[0_8px_32px_rgba(0,0,0,0.06)]"
               }`}
           >
-            {/* Logo in clean luxury badge */}
+            {/* Logo */}
             <a
               href="#hero"
               onClick={scrollTo("hero")}
               aria-label="Delta Plast"
-              className="flex items-center shrink-0 rounded-xl bg-white/95 px-3 py-1.5 border border-emerald-500/25 shadow-sm transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+              className="flex items-center gap-2 shrink-0 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <img
                 src={logo}
                 alt="Delta Plast"
                 width={1005}
                 height={588}
-                className="h-[34px] sm:h-[38px] md:h-[40px] w-auto object-contain select-none"
+                className="h-[44px] sm:h-[48px] md:h-[52px] w-auto object-contain transition-transform duration-300 hover:scale-105 select-none"
               />
             </a>
 
-            {/* Navigation matching Hero aesthetic */}
+            {/* Strict Chronological RTL Navigation in Segmented Capsule Track */}
             <nav
               aria-label={lang === "ar" ? "القائمة الرئيسية" : "Main navigation"}
-              className="header-navigation hidden items-center gap-1 p-1 bg-emerald-950/40 border border-emerald-500/20 rounded-xl shadow-[inset_0_1px_2px_rgba(0,0,0,0.2)] lg:flex"
+              className="header-navigation hidden items-center gap-1 p-1 bg-secondary/80 border border-border/70 rounded-full shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)] lg:flex"
             >
               {t.nav.map((n, i) => {
                 const id = navIds[i]!;
@@ -631,8 +631,8 @@ function Index() {
                     onClick={scrollTo(id)}
                     aria-current={isActive ? "location" : undefined}
                     className={`inline-flex items-center justify-center transition-all duration-200 text-sm select-none ${isActive
-                        ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-[0_0_12px_rgba(16,185,129,0.35)] rounded-lg px-4 py-1.5 font-bold scale-[1.02]"
-                        : "text-zinc-300 hover:text-emerald-300 hover:bg-emerald-500/10 font-medium px-3.5 py-1.5 rounded-lg"
+                      ? "bg-foreground text-background shadow-sm rounded-full px-4 py-1.5 font-bold scale-[1.02]"
+                      : "text-muted-foreground hover:text-foreground font-medium px-3.5 py-1.5 rounded-full hover:bg-background/90"
                       }`}
                   >
                     {n}
@@ -645,7 +645,7 @@ function Index() {
             <div className="flex shrink-0 items-center gap-2 sm:gap-2.5">
               <Button
                 variant="ghost"
-                className="h-9 px-3.5 rounded-xl text-xs font-bold border border-emerald-500/30 bg-emerald-950/30 hover:bg-emerald-500/20 hover:border-emerald-400 font-latin text-emerald-200 hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-emerald-400"
+                className="h-9 px-3.5 rounded-full text-xs font-bold border border-border/80 hover:bg-secondary font-latin text-foreground focus-visible:ring-2 focus-visible:ring-primary"
                 onClick={() => {
                   const nextLang = lang === "ar" ? "en" : "ar";
                   setLang(nextLang);
@@ -659,7 +659,7 @@ function Index() {
               </Button>
               <Button
                 asChild
-                className="hidden sm:inline-flex h-9 px-5 rounded-xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-semibold text-xs shadow-[0_4px_16px_rgba(16,185,129,0.35)] hover:scale-105 active:scale-95 transition-all"
+                className="hidden sm:inline-flex h-9 px-5 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs shadow-md shadow-primary/25 animate-shimmer hover:scale-105 active:scale-95 transition-all"
               >
                 <a href="#contact" onClick={scrollTo("contact")}>
                   {t.quote}
@@ -669,7 +669,7 @@ function Index() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-10 w-10 min-h-[44px] min-w-[44px] rounded-xl border border-emerald-500/30 bg-emerald-950/30 lg:hidden text-zinc-200 hover:text-white hover:bg-emerald-500/20"
+                className="h-10 w-10 min-h-[44px] min-w-[44px] rounded-full border border-border/80 lg:hidden text-foreground hover:bg-secondary"
                 aria-label={menu ? "Close menu" : "Open menu"}
                 aria-controls="mobile-navigation"
                 aria-expanded={menu}
@@ -679,12 +679,12 @@ function Index() {
               </Button>
             </div>
 
-            {/* Mobile Navigation Dropdown matching Hero aesthetic */}
+            {/* Mobile Navigation Dropdown */}
             {menu && (
               <nav
                 id="mobile-navigation"
                 aria-label={lang === "ar" ? "القائمة الرئيسية" : "Main navigation"}
-                className="absolute top-[calc(100%+12px)] inset-x-0 p-3.5 bg-[#02140e]/95 backdrop-blur-2xl border border-emerald-500/30 shadow-[0_16px_40px_rgba(0,0,0,0.7)] rounded-2xl grid grid-cols-2 gap-2.5 z-50 lg:hidden animate-in fade-in slide-in-from-top-2 duration-200"
+                className="absolute top-[calc(100%+12px)] inset-x-0 p-3.5 bg-background/95 backdrop-blur-2xl border border-border/80 shadow-[0_16px_40px_rgba(0,0,0,0.12)] rounded-3xl grid grid-cols-2 gap-2.5 z-50 lg:hidden animate-in fade-in slide-in-from-top-2 duration-200"
               >
                 {t.nav.slice(0, 4).map((n, i) => {
                   const id = navIds[i]!;
@@ -694,9 +694,9 @@ function Index() {
                       key={id}
                       href={`#${id}`}
                       onClick={scrollTo(id)}
-                      className={`flex items-center justify-center p-3.5 text-sm rounded-xl transition-all min-h-[44px] ${isActive
-                        ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-sm font-bold"
-                        : "bg-emerald-950/40 text-zinc-200 hover:text-white hover:bg-emerald-500/20 border border-emerald-500/20 font-medium"
+                      className={`flex items-center justify-center p-3.5 text-sm rounded-2xl transition-all min-h-[44px] ${isActive
+                        ? "bg-foreground text-background shadow-sm font-bold"
+                        : "bg-secondary text-foreground hover:bg-secondary/80 font-medium"
                         }`}
                     >
                       {n}
@@ -707,15 +707,15 @@ function Index() {
                 <a
                   href={`#${navIds[4]}`}
                   onClick={scrollTo(navIds[4]!)}
-                  className={`col-span-2 flex items-center justify-center gap-2 p-3.5 text-sm rounded-xl transition-all min-h-[44px] ${activeSection === navIds[4]
-                    ? "bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md font-bold"
-                    : "bg-gradient-to-r from-emerald-600 to-teal-500 text-white hover:from-emerald-500 hover:to-teal-400 font-bold shadow-sm"
+                  className={`col-span-2 flex items-center justify-center gap-2 p-3.5 text-sm rounded-2xl transition-all min-h-[44px] ${activeSection === navIds[4]
+                    ? "bg-primary text-primary-foreground shadow-md font-bold"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90 font-bold shadow-sm"
                     }`}
                 >
                   {t.quote}
                   <ArrowUpRight className="size-4 rtl:-scale-x-100" />
                 </a>
-                <div className="col-span-2 text-center text-[11px] text-zinc-400 pt-1" dir="ltr">
+                <div className="col-span-2 text-center text-[11px] text-muted-foreground pt-1" dir="ltr">
                   © {new Date().getFullYear()} Delta Plast
                 </div>
               </nav>
