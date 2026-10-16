@@ -1761,12 +1761,13 @@ html[dir="ltr"] .cinematic-copy {
     transform: scale(1);
   }
   100% {
-    transform: scale(1.07);
+    transform: scale(1.025);
   }
 }
 
 .animate-subtle-zoom {
   animation: subtle-zoom 6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* ========================================================

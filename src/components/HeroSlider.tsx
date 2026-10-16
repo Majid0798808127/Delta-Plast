@@ -6,8 +6,8 @@ import { StatCount } from "@/components/stat-count";
 import { cn } from "@/lib/utils";
 
 import building from "@/assets/factory-building.png";
-import injectionLine from "@/assets/slider-injection.jpg";
-import packagingLine from "@/assets/slider-packaging.jpg";
+import roboticsLine from "@/assets/hero-slide-robotics.png";
+import banoonWorkshop from "@/assets/hero-slide-banoon.png";
 
 type Lang = "ar" | "en";
 
@@ -29,21 +29,21 @@ const SLIDES: SlideData[] = [
     },
   },
   {
-    id: "automation",
-    image: injectionLine,
-    category: { ar: "تكنولوجيا التصنيع المتقدمة", en: "Advanced Automation" },
+    id: "robotics",
+    image: roboticsLine,
+    category: { ar: "خطوط الإنتاج والتعبئة الروبوتية", en: "Robotic Packaging & Injection Lines" },
     title: {
-      ar: "أحدث خطوط الحقن والنفخ الآلية وهندسة القوالب الدقيقة",
-      en: "Cutting-Edge Automated Injection & Precision Tooling",
+      ar: "أحدث خطوط الحقن الروبوتية والتعبئة الآلية الدقيقة",
+      en: "Next-Gen Robotic Injection & Automated Precision Packaging",
     },
   },
   {
-    id: "packaging",
-    image: packagingLine,
-    category: { ar: "حلول التعبئة والعبوات الصحية", en: "Certified Packaging Solutions" },
+    id: "banoon",
+    image: banoonWorkshop,
+    category: { ar: "مصنع ألعاب بنون® والمنتجات الترويجية", en: "Banoon® Toys & Promotional Items Workshop" },
     title: {
-      ar: "عبوات غذائية وكيميائية وصيدلانية معتمدة صحياً (ISO 22000)",
-      en: "Hygienic Containers for Food & Pharmaceutical Sectors",
+      ar: "خطوط تجميع وتعبئة متطورة لألعاب الأطفال والمفاجآت الترويجية",
+      en: "Advanced Assembly & Packaging Lines for Safe Children's Toys",
     },
   },
 ];
@@ -54,7 +54,7 @@ const DEFAULT_T_AR = {
   eyebrow: "نصنع المنتجات بدقة عالية",
   h1a: "أهلاً بكم في",
   h1b: "دلتا للبلاستيك",
-  sub: "رواد في صناعة العبوات البلاستيكية، الأدوات المنزلية، وهندسة القوالب المخصصة — من مدينة الملك عبدالله الثاني الصناعية.",
+  sub: "رواد في صناعة العبوات البلاستيكية، الأدوات المنزلية، وصناعة ألعاب الأطفال — من مدينة الملك عبدالله الثاني الصناعية.",
   quote: "تواصل معنا",
   secLink: "القطاعات",
   rail: ["قطاعات إنتاجية", "اعتمادات رسمية", "سنة من العطاء والتميز"],
@@ -64,7 +64,7 @@ const DEFAULT_T_EN = {
   eyebrow: "High precision manufacturing",
   h1a: "Welcome to",
   h1b: "Delta Plast",
-  sub: "Pioneers in plastic containers, household goods and precision mold engineering from King Abdullah II Industrial City.",
+  sub: "Leaders in plastic containers, household goods, and children's toys manufacturing — from King Abdullah II Industrial City.",
   quote: "Contact us",
   secLink: "Sectors",
   rail: ["Manufacturing sectors", "Official accreditations", "Years of excellence"],
@@ -198,10 +198,6 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
   return (
     <div
       className="w-full flex flex-col select-none relative"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
     >
       {/* 1. Full-Frame Slider with Overlay */}
       <div className="relative w-full h-[500px] sm:h-[560px] md:h-[620px] lg:h-[660px] overflow-hidden bg-black">
@@ -219,18 +215,14 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
                   aria-label={`${index + 1} of ${SLIDES.length}: ${slide.title[lang]}`}
                 >
                   <img
-                    key={slide.id + (isActive ? "-active" : "-idle")}
+                    key={slide.id}
                     src={slide.image}
                     alt={slide.title[lang]}
                     width={1920}
                     height={1080}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    className={cn(
-                      "w-full h-full object-cover object-center will-change-transform",
-                      isActive
-                        ? "animate-subtle-zoom"
-                        : "scale-100 opacity-90 transition-transform duration-700 ease-out",
-                    )}
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover object-center select-none"
                   />
                 </div>
               );
@@ -239,10 +231,10 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
         </div>
 
         {/* Top Vignette Overlay for crisp contrast */}
-        <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-black/60 to-transparent pointer-events-none z-10" />
+        <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black/40 via-black/15 to-transparent pointer-events-none z-10" />
 
-        {/* Deep Bottom Gradient: transitions smoothly to #050505 under the text */}
-        <div className="absolute inset-x-0 bottom-0 h-[75%] sm:h-[70%] bg-gradient-to-t from-[#050505] via-[#050505]/85 via-45% to-transparent pointer-events-none z-10" />
+        {/* Soft Bottom Gradient: keeps text readable while letting images shine clearly */}
+        <div className="absolute inset-x-0 bottom-0 h-[52%] sm:h-[48%] bg-gradient-to-t from-[#050505]/90 via-[#050505]/50 via-40% to-transparent pointer-events-none z-10" />
 
         {/* Top Badge: Current Category & Slide Counter */}
         <div className="absolute top-5 inset-x-5 sm:top-7 sm:inset-x-8 flex items-center justify-between pointer-events-none z-20">
@@ -284,19 +276,19 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
         {/* Main Hero Text directly positioned over the lower gradient (as in user mockup) */}
         <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 inset-x-6 sm:inset-x-12 md:inset-x-16 z-20 flex flex-col items-start pointer-events-auto">
           {/* Eyebrow */}
-          <div className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-emerald-400 mb-3">
+          <div className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-emerald-400 mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
             <span className="h-0.5 w-7 bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full inline-block shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
             <span className="font-bold tracking-wide">{currentT.eyebrow}</span>
           </div>
 
           {/* Heading H1 */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold leading-[1.18] text-white tracking-tight drop-shadow-md max-w-3xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold leading-[1.18] text-white tracking-tight drop-shadow-[0_3px_12px_rgba(0,0,0,0.95)] max-w-3xl">
             <span>{currentT.h1a}</span>{" "}
             <span className="text-white inline-block">{currentT.h1b}</span>
           </h1>
 
           {/* Description */}
-          <p className="mt-3.5 sm:mt-4 text-sm sm:text-base md:text-lg text-zinc-200/90 leading-relaxed max-w-2xl drop-shadow font-normal">
+          <p className="mt-3.5 sm:mt-4 text-sm sm:text-base md:text-lg text-white/95 leading-relaxed max-w-2xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] font-medium">
             {currentT.sub}
           </p>
 

@@ -8,8 +8,8 @@ import { StatCount } from "@/components/stat-count";
 import { HeroSlider } from "@/components/HeroSlider";
 import banoonToys from "@/assets/banoon-toys.jpg.asset.json";
 import sector1 from "@/assets/s1.jpg";
-import sector2 from "@/assets/s2.jpg";
-import sector3 from "@/assets/s3.jpg";
+import sectorHousehold from "@/assets/sector-household.jpg";
+import sectorHoses from "@/assets/sector-hoses.jpg";
 import sector5 from "@/assets/s5.jpg";
 
 import logo from "@/assets/logo.png";
@@ -21,34 +21,158 @@ import cert3 from "@/assets/cert-3.png.asset.json";
 import cert4 from "@/assets/cert-4.png.asset.json";
 import cert5 from "@/assets/cert-5.png.asset.json";
 import cert6 from "@/assets/cert-6.png.asset.json";
-import hihoseLogo from "@/assets/hihose-logo.png.asset.json";
-import banoonLogo from "@/assets/banoon-logo.webp.asset.json";
-import choudharyLogo from "@/assets/brand-choudhary-2.webp.asset.json";
-import kidoJoyful from "@/assets/brand-kido-joyful.png.asset.json";
-import banooninz from "@/assets/brand-banooninz.webp.asset.json";
-import kidoSurprise from "@/assets/brand-kido-surprise.webp.asset.json";
-import deltaBrand from "@/assets/brand-delta-plast.webp.asset.json";
-import winnerStars from "@/assets/brand-winner-stars.png.asset.json";
-import joHeroes from "@/assets/brand-jo-heroes.png.asset.json";
-import kidoDough from "@/assets/brand-kido-dough.webp.asset.json";
-import miniKido from "@/assets/brand-mini-kido.png.asset.json";
+import hihoseLogo from "@/assets/hihose-logo.png";
+import banoonLogo from "@/assets/banoon-logo.webp";
+import choudharyLogo from "@/assets/brand-choudhary-2.webp";
+import kidoJoyful from "@/assets/brand-kido-joyful.png";
+import banooninz from "@/assets/brand-banooninz.webp";
+import kidoSurprise from "@/assets/brand-kido-surprise.webp";
+import deltaBrand from "@/assets/brand-delta-plast.webp";
+import joHeroes from "@/assets/brand-jo-heroes.png";
+import kidoDough from "@/assets/brand-kido-dough.webp";
+import miniKido from "@/assets/brand-mini-kido.png";
+
+const SEO_KEYWORDS = [
+  "Plastic Manufacturing Company", "Plastic Products Manufacturer", "Plastic Factory in Jordan",
+  "Plastic Industries in Jordan", "Plastic Products Supplier", "Plastic Manufacturing in Jordan",
+  "Plastic Factory in Amman", "Plastic Manufacturer in Sahab", "Plastic Injection Molding",
+  "Plastic Injection Molding Manufacturer", "Custom Plastic Manufacturing", "Plastic Products Wholesale",
+  "Wholesale Plastic Products Supplier", "Plastic Products Exporter", "Plastic Exporter from Jordan",
+  "Plastic Manufacturing Company in Jordan", "Plastic Toy Manufacturer", "Plastic Toys Manufacturer",
+  "Plastic Toys Wholesale", "Surprise Toys Manufacturer", "Kids Surprise Toys Wholesale",
+  "Surprise Egg Toys Manufacturer", "Children's Plastic Toys Supplier", "Wholesale Plastic Toys",
+  "Educational Toys Manufacturer", "Plastic Toy Factory", "OEM Plastic Products Manufacturer",
+  "Private Label Plastic Products", "Custom Plastic Products Manufacturer", "Plastic Product Design and Manufacturing",
+  "Plastic Household Products Manufacturer", "Plastic Household Products Supplier", "Wholesale Plastic Household Items",
+  "Plastic Packaging Manufacturer", "Custom Plastic Packaging", "Plastic Packaging Solutions",
+  "Industrial Plastic Products", "Plastic Components Manufacturer", "Plastic Parts Manufacturer",
+  "Plastic Products Factory", "Jordan Plastic Products Supplier", "Plastic Industry in Jordan",
+  "Plastic Manufacturing Solutions", "B2B Plastic Products Supplier", "Plastic Products for Export",
+  "International Plastic Products Supplier", "Delta Plastic Industries", "Delta Plastic Industries Jordan",
+  "Delta Plast Jordan", "Delta Plastic Factory Jordan", "Wholesale Plastic Household Products",
+  "Plastic Household Items Factory", "Plastic Containers Wholesale", "Plastic Container Manufacturer in Jordan",
+  "Plastic Container Manufacturing", "Plastic Household Storage Containers", "Plastic Bowls for Household Use",
+  "Plastic Packaging Supplier", "Plastic Containers and Household Products Manufacturer",
+  "شركة تصنيع البلاستيك", "مصنع منتجات بلاستيكية", "مصنع بلاستيك في الأردن", "الصناعات البلاستيكية في الأردن",
+  "مورد منتجات بلاستيكية", "تصنيع البلاستيك في الأردن", "مصنع بلاستيك في عمّان", "مصنع بلاستيك في سحاب",
+  "تصنيع البلاستيك بالحقن", "مصنع قولبة حقن البلاستيك", "تصنيع المنتجات البلاستيكية حسب الطلب",
+  "منتجات بلاستيكية بالجملة", "مورد منتجات بلاستيكية بالجملة", "تصدير المنتجات البلاستيكية",
+  "تصدير البلاستيك من الأردن", "شركة الصناعات البلاستيكية في الأردن", "مصنع ألعاب بلاستيكية",
+  "تصنيع ألعاب الأطفال البلاستيكية", "ألعاب بلاستيكية بالجملة", "مصنع ألعاب المفاجآت",
+  "ألعاب مفاجآت للأطفال بالجملة", "تصنيع ألعاب البيض المفاجئ", "مورد ألعاب الأطفال البلاستيكية",
+  "تجارة ألعاب الأطفال بالجملة", "مصنع ألعاب تعليمية للأطفال", "مصنع ألعاب بلاستيكية في الأردن",
+  "تصنيع المنتجات البلاستيكية للعلامات التجارية", "تصنيع منتجات بلاستيكية بعلامات تجارية خاصة",
+  "تصنيع المنتجات البلاستيكية حسب المواصفات", "تصميم وتصنيع المنتجات البلاستيكية",
+  "مصنع المنتجات البلاستيكية المنزلية", "مورد المنتجات البلاستيكية المنزلية", "الأدوات المنزلية البلاستيكية بالجملة",
+  "مصنع مواد التعبئة والتغليف البلاستيكية", "تصنيع عبوات التغليف البلاستيكية حسب الطلب",
+  "حلول التغليف البلاستيكي", "المنتجات البلاستيكية الصناعية", "مصنع المكونات البلاستيكية",
+  "مصنع قطع البلاستيك", "مصنع المنتجات البلاستيكية", "مورد المنتجات البلاستيكية في الأردن",
+  "قطاع الصناعات البلاستيكية في الأردن", "حلول تصنيع البلاستيك", "مورد منتجات بلاستيكية للشركات",
+  "منتجات بلاستيكية للتصدير", "مورد دولي للمنتجات البلاستيكية", "شركة دلتا للصناعات البلاستيكية",
+  "شركة دلتا للصناعات البلاستيكية في الأردن", "مصنع دلتا للبلاستيك في الأردن",
+  "أدوات منزلية بلاستيكية بالجملة", "مصنع أدوات منزلية بلاستيكية", "تصنيع الأدوات المنزلية البلاستيكية",
+  "عبوات بلاستيكية بالجملة", "مصنع عبوات بلاستيكية في الأردن", "تصنيع العبوات البلاستيكية",
+  "حاويات بلاستيكية منزلية", "أوعية بلاستيكية للاستخدام المنزلي", "مورد عبوات بلاستيكية للشركات",
+  "مصنع عبوات وأدوات بلاستيكية", "أدوات بلاستيكية منزلية متعددة"
+].join(", ");
+
+const SCHEMA_ORG_DATA = {
+  "@context": "https://schema.org",
+  "@type": "Manufacturer",
+  "name": "Delta Plast | شركة دلتا للصناعات البلاستيكية",
+  "alternateName": [
+    "Delta Plastic Industries",
+    "Delta Plast Jordan",
+    "Delta Plastic Factory Jordan",
+    "دلتا للبلاستيك",
+    "مصنع دلتا للبلاستيك في الأردن"
+  ],
+  "description": "شركة دلتا للصناعات البلاستيكية في الأردن — ريادة متقدمة في تصنيع العبوات البلاستيكية، الأدوات المنزلية، ألعاب الأطفال بنون®، برابيش Hi HOSE®، وهندسة القوالب من مدينة الملك عبدالله الثاني الصناعية، سحاب، عمّان.",
+  "url": "https://deltaplast.jo",
+  "telephone": "+962771000832",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "King Abdullah II Industrial City, Sahab",
+    "addressLocality": "Amman",
+    "addressCountry": "JO"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 31.8417751,
+    "longitude": 36.0202137
+  },
+  "keywords": SEO_KEYWORDS,
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Delta Plast Industrial Capabilities",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Plastic Containers & Packaging Solutions | تصنيع العبوات البلاستيكية",
+          "description": "حلول تعبئة بتقنيات النفخ والحقن لمختلف الصناعات الغذائية والكيميائية والصيدلانية."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Plastic Household Products | أدوات بلاستيكية منزلية متعددة",
+          "description": "منتجات منزلية ومطبخية متينة ومتعددة الاستخدامات بالجملة والتصدير."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Hi HOSE® Spiral Hoses | صناعة البرابيش الحلزونية",
+          "description": "العلامة المسجلة Hi HOSE® برابيش حلزونية صحية للاستخدام الواحد."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Banoon® Children's Toys | صناعة ألعاب الأطفال البلاستيكية والمفاجآت",
+          "description": "العلامة المسجلة Banoon® ألعاب أطفال آمنة وصحية ومفاجآت تفاعلية."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Custom Plastic Parts & Precision Molds | قطع بلاستيكية وحلول تغليف متخصصة",
+          "description": "هندسة مخصصة وحقن دقيق حسب مواصفات العميل للشركات والعلامات التجارية الخاصة."
+        }
+      }
+    ]
+  }
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Delta Plast | دلتا للصناعات البلاستيكية" },
+      { title: "Delta Plast | دلتا للصناعات البلاستيكية — مصنع بلاستيك في الأردن" },
       {
         name: "description",
         content:
-          "Delta Plast — شركة دلتا للصناعات البلاستيكية — عبوات بلاستيكية، أدوات منزلية، ألعاب بنون®، برابيش Hi HOSE® وهندسة قوالب من مدينة الملك عبدالله الثاني الصناعية، الأردن.",
+          "Delta Plast — شركة دلتا للصناعات البلاستيكية — عبوات بلاستيكية، أدوات منزلية، ألعاب الأطفال بنون®، برابيش Hi HOSE® وهندسة قوالب من مدينة الملك عبدالله الثاني الصناعية، الأردن.",
       },
-      { property: "og:title", content: "Delta Plast | دلتا للصناعات البلاستيكية" },
+      { name: "keywords", content: SEO_KEYWORDS },
+      { property: "og:title", content: "Delta Plast | دلتا للصناعات البلاستيكية — مصنع بلاستيك في الأردن" },
       {
         property: "og:description",
-        content: "صناعة بلاستيكية متقدمة وهندسة قوالب من مدينة الملك عبدالله الثاني الصناعية، الأردن.",
+        content: "صناعة بلاستيكية متقدمة وهندسة قوالب وعبوات وأدوات منزلية وألعاب أطفال من مدينة الملك عبدالله الثاني الصناعية، سحاب، الأردن.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(SCHEMA_ORG_DATA),
+      },
     ],
   }),
   component: Index,
@@ -58,12 +182,12 @@ type Lang = "ar" | "en";
 
 const T = {
   ar: {
-    nav: ["الرئيسية", "القطاعات", "الاعتمادات", "العلامات", "تواصل"],
+    nav: ["الرئيسية", "القطاعات", "الشهادات", "علاماتنا التجارية", "من نحن"],
     quote: "تواصل معنا",
     eyebrow: "نصنع المنتجات بدقة عالية",
     h1a: "أهلاً بكم في",
     h1b: "دلتا للبلاستيك",
-    sub: "رواد في صناعة العبوات البلاستيكية، الأدوات المنزلية، وهندسة القوالب المخصصة — من مدينة الملك عبدالله الثاني الصناعية.",
+    sub: "رواد في صناعة العبوات البلاستيكية، الأدوات المنزلية، وصناعة ألعاب الأطفال — من مدينة الملك عبدالله الثاني الصناعية.",
     secLink: "القطاعات",
     rail: ["قطاعات إنتاجية", "اعتمادات رسمية", "سنة من العطاء والتميز"],
     aboutK: "من نحن",
@@ -92,10 +216,10 @@ const T = {
     factsK: "حقائق وأرقام",
     factsT: "دلتا بلاست بالأرقام",
     facts: [
-      ["100", "%", "مواد آمنة وصحية", "نصنع ألعابنا ومنتجاتنا بالكامل من مواد معتمدة عالمياً خالية من ملوثات البيئة لتجربة لعب آمنة تماماً."],
-      ["14", "+", "دولة نصدر إليها", "ثقة تمتد لأكثر من 15 دولة إقليمياً ودولياً، نوفر لهم منتجاتنا بجودة عالمية تليق بأطفالكم."],
-      ["157", "+", "موظف وخبير مبدع", "فريق ريادي متفاني من المصممين والمهندسين ومختصي الإنتاج لضمان سعادة أطفالكم."],
-      ["16", "+", "منتج ولعبة تفاعلية", "ألعاب صلصال إبداعية ومفاجآت ذكية ومجسمات متميزة من عائلات MEGO, KIDO وبنون بلايدو."],
+      ["100", "%", "مواد آمنة", "منتجاتنا بالكامل من مواد معتمدة عالمياً خالية من ملوثات البيئة ومطابقة لأعلى معايير السلامة والصحة."],
+      ["24", "+", "دولة نصدر إليها", "ثقة تمتد لأكثر من 24 دولة إقليمياً ودولياً، نوفر لهم منتجاتنا بجودة عالمية تليق بشركائنا وعملائنا."],
+      ["157", "+", "موظف وخبير مبدع", "فريق ريادي متفانٍ من المصممين والمهندسين ومختصي الإنتاج لضمان أعلى معايير الجودة والإتقان."],
+      ["80", "+", "منتجات بلاستيكية مميزة", "تشكيلة واسعة تلبي مختلف القطاعات؛ من العبوات والأدوات المنزلية إلى البرابيش والألعاب والقطع المخصصة."],
     ],
     brandK: "العلامات التجارية",
     brandT: "علاماتنا التجارية، معيار واحد",
@@ -132,12 +256,12 @@ const T = {
     },
   },
   en: {
-    nav: ["Home", "Sectors", "Certifications", "Brands", "Contact"],
+    nav: ["Home", "Sectors", "Certifications", "Our Brands", "About Us"],
     quote: "Contact us",
     eyebrow: "We manufacture products with high precision",
     h1a: "Welcome to",
     h1b: "Delta for Plastics",
-    sub: "Leaders in containers, household goods, and custom mold engineering — from King Abdullah II Industrial City.",
+    sub: "Leaders in plastic containers, household goods, and children's toys manufacturing — from King Abdullah II Industrial City.",
     secLink: "Sectors",
     rail: ["Production Sectors", "Official Certifications", "Years of Excellence & Growth"],
     aboutK: "About",
@@ -166,10 +290,10 @@ const T = {
     factsK: "Facts & figures",
     factsT: "delta PLAST in numbers",
     facts: [
-      ["100", "%", "Safe, healthy materials", "Our toys and products are made entirely from internationally certified, pollutant-free materials for completely safe play."],
-      ["14", "+", "Countries we export to", "Trust spanning more than 15 countries at home and abroad — we supply our products at a world-class quality worthy of your children."],
-      ["157", "+", "Employees and creative experts", "A dedicated team of designers, engineers and production specialists devoted to your children's happiness."],
-      ["16", "+", "Products and interactive toys", "Creative clay toys, smart surprises and distinctive figures from the MEGO, KIDO and Banoon Play-Doh families."],
+      ["100", "%", "Safe materials", "Our products are made entirely from internationally certified materials, free from environmental pollutants and compliant with health standards."],
+      ["24", "+", "Export destinations", "Trusted across more than 24 countries regionally and internationally, supplying world-class products to our partners."],
+      ["157", "+", "Employees and creative experts", "A dedicated team of designers, engineers, and production specialists ensuring the highest standards of craftsmanship."],
+      ["80", "+", "Distinct plastic products", "A diverse range across sectors: from packaging and household goods to hoses, toys, and precision custom parts."],
     ],
     brandK: "Brands",
     brandT: "Our brands, one standard",
@@ -207,21 +331,20 @@ const T = {
   },
 };
 
-const navIds = ["hero", "sectors", "certificates", "brands", "contact"];
+const navIds = ["hero", "sectors", "certificates", "brands", "about"];
 const sectorLinks = [undefined, undefined, "https://hihose.jo", "https://banoonkids.com", undefined];
 const certImgs = [cert1.url, cert2.url, cert3.url, cert4.url, cert5.url, cert6.url];
 const brandLogos = [
-  { src: hihoseLogo.url, name: "Hi HOSE®", href: "https://hihose.jo" },
-  { src: banoonLogo.url, name: "Banoon®", href: "https://banoonkids.com" },
-  { src: choudharyLogo.url, name: "Choudhary Group", href: undefined },
-  { src: kidoJoyful.url, name: "Kido — a joyful world", href: undefined },
-  { src: banooninz.url, name: "Banooninz", href: undefined },
-  { src: kidoSurprise.url, name: "Kido Surprise", href: undefined },
-  { src: deltaBrand.url, name: "Delta Plast", href: undefined },
-  { src: winnerStars.url, name: "Winner Stars", href: undefined },
-  { src: joHeroes.url, name: "JO Heroes", href: undefined },
-  { src: kidoDough.url, name: "Kido Play-Dough", href: undefined },
-  { src: miniKido.url, name: "Mini Kido Surprise", href: undefined },
+  { src: hihoseLogo, name: "Hi HOSE®", href: "https://hihose.jo" },
+  { src: banoonLogo, name: "Banoon®", href: "https://banoonkids.com" },
+  { src: choudharyLogo, name: "Choudhary Group", href: undefined },
+  { src: kidoJoyful, name: "Kido — a joyful world", href: undefined },
+  { src: banooninz, name: "Banooninz", href: undefined },
+  { src: kidoSurprise, name: "Kido Surprise", href: undefined },
+  { src: deltaBrand, name: "Delta Plast", href: undefined },
+  { src: joHeroes, name: "JO Heroes", href: undefined },
+  { src: kidoDough, name: "Kido Play-Dough", href: undefined },
+  { src: miniKido, name: "Mini Kido Surprise", href: undefined },
 ];
 const advIcons = [Users, ShieldCheck, Cog, Leaf];
 const MAP = "https://www.google.com/maps/dir/?api=1&destination=31.8417751,36.0202137";
@@ -383,7 +506,7 @@ function QuoteForm({ f }: { f: (typeof T)["ar"]["f"] }) {
   );
 }
 
-const sectorImages = [sector1, sector2, sector3, banoonToys.url, sector5];
+const sectorImages = [sector1, sectorHousehold, sectorHoses, banoonToys.url, sector5];
 
 const ARAB_TIMEZONES = new Set([
   "Asia/Amman",
@@ -686,7 +809,7 @@ function Index() {
                 aria-label={lang === "ar" ? "القائمة الرئيسية" : "Main navigation"}
                 className="absolute top-[calc(100%+12px)] inset-x-0 p-3.5 bg-background/95 backdrop-blur-2xl border border-border/80 shadow-[0_16px_40px_rgba(0,0,0,0.12)] rounded-3xl grid grid-cols-2 gap-2.5 z-50 lg:hidden animate-in fade-in slide-in-from-top-2 duration-200"
               >
-                {t.nav.slice(0, 4).map((n, i) => {
+                {t.nav.map((n, i) => {
                   const id = navIds[i]!;
                   const isActive = activeSection === id;
                   return (
@@ -694,7 +817,7 @@ function Index() {
                       key={id}
                       href={`#${id}`}
                       onClick={scrollTo(id)}
-                      className={`flex items-center justify-center p-3.5 text-sm rounded-2xl transition-all min-h-[44px] ${isActive
+                      className={`flex items-center justify-center p-3 text-sm rounded-2xl transition-all min-h-[44px] ${i === 4 ? "col-span-2 sm:col-span-1" : ""} ${isActive
                         ? "bg-foreground text-background shadow-sm font-bold"
                         : "bg-secondary text-foreground hover:bg-secondary/80 font-medium"
                         }`}
@@ -703,14 +826,11 @@ function Index() {
                     </a>
                   );
                 })}
-                {/* 5th nav link (تواصل) and Primary CTA combined in an accessible full-width structure */}
+                {/* Primary CTA (تواصل معنا) */}
                 <a
-                  href={`#${navIds[4]}`}
-                  onClick={scrollTo(navIds[4]!)}
-                  className={`col-span-2 flex items-center justify-center gap-2 p-3.5 text-sm rounded-2xl transition-all min-h-[44px] ${activeSection === navIds[4]
-                    ? "bg-primary text-primary-foreground shadow-md font-bold"
-                    : "bg-primary text-primary-foreground hover:bg-primary/90 font-bold shadow-sm"
-                    }`}
+                  href="#contact"
+                  onClick={scrollTo("contact")}
+                  className="col-span-2 flex items-center justify-center gap-2 p-3.5 text-sm rounded-2xl transition-all min-h-[44px] bg-primary text-primary-foreground hover:bg-primary/90 font-bold shadow-sm"
                 >
                   {t.quote}
                   <ArrowUpRight className="size-4 rtl:-scale-x-100" />
@@ -757,7 +877,7 @@ function Index() {
                           src={sectorImages[i]}
                           alt={title}
                           loading="lazy"
-                          className={i === 2 || i === 3 ? "object-contain p-2" : "object-cover"}
+                          className="w-full aspect-[1.5] object-cover"
                         />
                         <span className="sector-number tilt-back">{pad(i + 1)}</span>
                       </figure>
@@ -916,7 +1036,7 @@ function Index() {
           </section>
 
           {/* About Us */}
-          <section className="editorial-section">
+          <section id="about" className="editorial-section">
             <Reveal className="about-layout">
               <div>
                 <Pill>{t.aboutK}</Pill>
@@ -957,7 +1077,7 @@ function Index() {
           <section id="contact" className="editorial-section">
             <Reveal className="contact-head">
               <div>
-                <Pill>{t.nav[4]}</Pill>
+                <Pill>{t.rfqT}</Pill>
                 <h2 className={h2}>{t.rfqT}</h2>
               </div>
               <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">{t.rfqP}</p>

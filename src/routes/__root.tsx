@@ -79,6 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Delta Plast | دلتا للصناعات البلاستيكية" },
+      { name: "keywords", content: "Delta Plast, دلتا للبلاستيك, مصنع بلاستيك في الأردن, Plastic Manufacturer Jordan, Sahab, King Abdullah II Industrial City, عبوات بلاستيكية, أدوات منزلية, ألعاب أطفال" },
       { property: "og:site_name", content: "Delta Plast" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
