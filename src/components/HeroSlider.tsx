@@ -84,15 +84,16 @@ const DEFAULT_T_EN = {
  * Mobile Haptic Feedback helper
  * Triggers subtle vibration on mobile devices (e.g. Android Chrome/Edge/Firefox)
  */
-function triggerHaptic(pattern: number | number[] = 14) {
-  if (typeof window === "undefined") return;
+function triggerHaptic(pattern: number | number[] = 14): boolean {
+  if (typeof window === "undefined") return false;
   try {
     if ("vibrate" in navigator && typeof navigator.vibrate === "function") {
-      navigator.vibrate(pattern);
+      return navigator.vibrate(pattern);
     }
   } catch {
     // Safe fallback if not supported or restricted
   }
+  return false;
 }
 
 interface HeroSliderProps {
@@ -152,6 +153,7 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
 
   // Animation states: image first, then text descends, then types word by word
   const [hasDropped, setHasDropped] = useState(false);
+  const [isRumbling, setIsRumbling] = useState(false);
   const [eyebrowCount, setEyebrowCount] = useState(0);
   const [titleCount, setTitleCount] = useState(0);
   const [subCount, setSubCount] = useState(0);
@@ -159,6 +161,7 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
   const [buttonsVisible, setButtonsVisible] = useState(false);
 
   const timeoutsRef = useRef<number[]>([]);
+  const needsWelcomeVibrateRef = useRef(true);
 
   const clearAllTimeouts = useCallback(() => {
     timeoutsRef.current.forEach((id) => window.clearTimeout(id));
@@ -168,6 +171,7 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
   const completeAllImmediately = useCallback(() => {
     clearAllTimeouts();
     setHasDropped(true);
+    setIsRumbling(false);
     setEyebrowCount(eyebrowWords.length);
     setTitleCount(allTitleWords.length);
     setSubCount(subWords.length);
@@ -186,43 +190,60 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
 
     // Reset initial state: text hidden so user sees the hero photo first
     setHasDropped(false);
+    setIsRumbling(false);
     setEyebrowCount(0);
     setTitleCount(0);
     setSubCount(0);
     setActivePhase("idle");
     setButtonsVisible(false);
+    needsWelcomeVibrateRef.current = true;
 
     // 1. Initial pause for the factory image to be appreciated first (600ms)
+    // Then the text drops down and triggers automatic vibration
     const tDrop = window.setTimeout(() => {
       setHasDropped(true);
       setActivePhase("dropping");
+      // Fire automatic haptic pulse as text descends
+      const ok = triggerHaptic([30, 45, 30]);
+      if (ok) {
+        needsWelcomeVibrateRef.current = false;
+      }
     }, 600);
     timeoutsRef.current.push(tDrop);
 
-    // 2. Eyebrow badge typing: starts at 900ms
-    const EYEBROW_START = 900;
+    // 1.5 Landing physical impact rumble at 1100ms
+    const tRumble = window.setTimeout(() => {
+      setIsRumbling(true);
+      triggerHaptic([35, 45, 30]);
+      const tEndRumble = window.setTimeout(() => setIsRumbling(false), 500);
+      timeoutsRef.current.push(tEndRumble);
+    }, 1100);
+    timeoutsRef.current.push(tRumble);
+
+    // 2. Eyebrow badge typing: starts at 1250ms
+    const EYEBROW_START = 1250;
     const EYEBROW_STEP = 130;
     eyebrowWords.forEach((_, idx) => {
       const t = window.setTimeout(() => {
         setActivePhase("eyebrow");
         setEyebrowCount(idx + 1);
-        triggerHaptic(12);
+        triggerHaptic(20);
       }, EYEBROW_START + idx * EYEBROW_STEP);
       timeoutsRef.current.push(t);
     });
 
     // 3. Title (H1) word-by-word typing: starts right after eyebrow
     const TITLE_START = EYEBROW_START + eyebrowWords.length * EYEBROW_STEP + 160;
-    const TITLE_STEP = 180;
+    const TITLE_STEP = 190;
     allTitleWords.forEach((_, idx) => {
       const t = window.setTimeout(() => {
         setActivePhase("title");
         setTitleCount(idx + 1);
         if (idx === allTitleWords.length - 1) {
-          // Last word of title ("للبلاستيك") gets a celebratory double vibration tick
-          triggerHaptic([16, 40, 20]);
+          // Last word of title ("للبلاستيك") gets a prominent double vibration
+          triggerHaptic([35, 55, 45]);
         } else {
-          triggerHaptic(14);
+          triggerHaptic(28);
         }
       }, TITLE_START + idx * TITLE_STEP);
       timeoutsRef.current.push(t);
@@ -235,7 +256,7 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
       const t = window.setTimeout(() => {
         setActivePhase("sub");
         setSubCount(idx + 1);
-        triggerHaptic(10);
+        triggerHaptic(18);
       }, SUB_START + idx * SUB_STEP);
       timeoutsRef.current.push(t);
     });
@@ -268,13 +289,22 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
     return () => clearAllTimeouts();
   }, [lang, startAnimation, clearAllTimeouts]);
 
-  // Mobile user touch unlocks vibration permission on mobile browsers
+  // Mobile user touch/gesture unlocks vibration permission & delivers immediate tactile rumble
   useEffect(() => {
-    const onTouch = () => {
-      triggerHaptic(8);
+    const onUserGesture = () => {
+      if (needsWelcomeVibrateRef.current) {
+        triggerHaptic([35, 50, 40]);
+        needsWelcomeVibrateRef.current = false;
+      }
     };
-    window.addEventListener("touchstart", onTouch, { once: true, passive: true });
-    return () => window.removeEventListener("touchstart", onTouch);
+    window.addEventListener("touchstart", onUserGesture, { passive: true });
+    window.addEventListener("pointerdown", onUserGesture, { passive: true });
+    window.addEventListener("scroll", onUserGesture, { passive: true });
+    return () => {
+      window.removeEventListener("touchstart", onUserGesture);
+      window.removeEventListener("pointerdown", onUserGesture);
+      window.removeEventListener("scroll", onUserGesture);
+    };
   }, []);
 
   const handleScroll = (id: string) => (e: React.MouseEvent) => {
@@ -463,7 +493,9 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
               : "opacity-0 -translate-y-8 pointer-events-none"
           )}
         >
-          {/* Eyebrow badge with glowing bar */}
+          {/* Inner tactile rumble wrapper to shake realistically upon landing */}
+          <div className={cn("w-full flex flex-col items-start", isRumbling && "animate-tactile-rumble")}>
+            {/* Eyebrow badge with glowing bar */}
           <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs md:text-sm font-semibold text-emerald-400 mb-1 sm:mb-2.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
             <span
               className={cn(
@@ -601,6 +633,7 @@ export function HeroSlider({ lang, t, scrollTo }: HeroSliderProps) {
             </Button>
           </div>
         </div>
+      </div>
 
         {/* Slide Progress Bar along bottom edge of image */}
         <div className="absolute bottom-0 inset-x-0 h-1 bg-white/10 overflow-hidden pointer-events-none z-20">

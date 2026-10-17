@@ -1773,6 +1773,20 @@ html[dir="ltr"] .cinematic-copy {
   will-change: transform;
 }
 
+/* Tactile Micro-Rumble for Hero Descent Impact */
+@keyframes tactile-rumble {
+  0% { transform: translateY(0); }
+  20% { transform: translateY(2.5px); }
+  40% { transform: translateY(-1.5px); }
+  60% { transform: translateY(1px); }
+  80% { transform: translateY(-0.5px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-tactile-rumble {
+  animation: tactile-rumble 450ms cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
 /* ========================================================
    HIGH-END 3D TACTILE STYLING (ENTERPRISE / LUXURY SUITE)
    ======================================================== */
