@@ -1755,19 +1755,22 @@ html[dir="ltr"] .cinematic-copy {
   animation: float-slow 7s ease-in-out infinite;
 }
 
-/* Subtle Ken Burns Zoom for Hero Slider */
+/* Cinematic Gentle Zoom-In for Hero Slider */
 @keyframes subtle-zoom {
   0% {
-    transform: scale(1);
+    transform: scale(1) translateZ(0);
   }
   100% {
-    transform: scale(1.025);
+    transform: scale(1.05) translateZ(0);
   }
 }
 
 .animate-subtle-zoom {
-  animation: subtle-zoom 6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  image-rendering: -webkit-optimize-contrast;
+  animation: subtle-zoom 5.5s cubic-bezier(0.25, 1, 0.45, 1) forwards;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
 }
 
 /* ========================================================

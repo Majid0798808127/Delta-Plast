@@ -13,7 +13,7 @@ import sectorHoses from "@/assets/sector-hoses.jpg";
 import sector5 from "@/assets/s5.jpg";
 
 import logo from "@/assets/logo.png";
-import factoryMachine from "@/assets/factory-machine.png";
+import factoryBuilding from "@/assets/hero-factory-building.jpg";
 import building from "@/assets/factory-building.png.asset.json";
 import cert1 from "@/assets/cert-1.png.asset.json";
 import cert2 from "@/assets/cert-2.png.asset.json";
@@ -89,7 +89,8 @@ const SCHEMA_ORG_DATA = {
   ],
   "description": "شركة دلتا للصناعات البلاستيكية في الأردن — ريادة متقدمة في تصنيع العبوات البلاستيكية، الأدوات المنزلية، ألعاب الأطفال بنون®، برابيش Hi HOSE®، وهندسة القوالب من مدينة الملك عبدالله الثاني الصناعية، سحاب، عمّان.",
   "url": "https://deltaplast.jo",
-  "telephone": "+962771000832",
+  "telephone": ["+962795711148", "+962797440088"],
+  "email": ["info@deltaplast.jo", "sales@deltaplast.jo", "tariq0002@hotmail.com"],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "King Abdullah II Industrial City, Sahab",
@@ -348,7 +349,7 @@ const brandLogos = [
 ];
 const advIcons = [Users, ShieldCheck, Cog, Leaf];
 const MAP = "https://www.google.com/maps/dir/?api=1&destination=31.8417751,36.0202137";
-const WA = "https://wa.me/962771000832";
+const WA = "https://wa.me/962795711148";
 const pad = (n: number) => String(n).padStart(2, "0");
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -1052,18 +1053,19 @@ function Index() {
                 <Tilt3D className="rounded-2xl overflow-hidden border border-border/80 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18),0_0_35px_-5px_rgba(16,185,129,0.15),inset_0_2px_0_rgba(255,255,255,0.9)] transition-all duration-500 hover:border-emerald-500/50 hover:shadow-[0_30px_70px_-10px_rgba(0,0,0,0.25),0_0_50px_-5px_rgba(16,185,129,0.3)]">
                   <div className="relative overflow-hidden w-full">
                     <img
-                      src={factoryMachine}
+                      src={factoryBuilding}
                       alt={t.company}
                       width={1024}
-                      height={434}
+                      height={528}
                       loading="lazy"
-                      className="object-cover w-full aspect-[21/10] transition-transform duration-700 ease-out hover:scale-105"
+                      className="object-cover w-full aspect-[16/9] transition-transform duration-700 ease-out hover:scale-105"
+                      style={{ imageRendering: "-webkit-optimize-contrast" }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-white/10 pointer-events-none opacity-60 hover:opacity-30 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-white/10 pointer-events-none opacity-50 hover:opacity-20 transition-opacity" />
                   </div>
                 </Tilt3D>
                 <figcaption className="mt-3.5 text-xs text-muted-foreground flex items-center justify-between">
-                  <span>{t.company} — أحدث خطوط الإنتاج والتقنيات الصناعية</span>
+                  <span>{t.company} — المجمع الصناعي الرئيسي، مدينة الملك عبدالله الثاني الصناعية</span>
                   <span className="inline-flex items-center gap-1.5 text-emerald-600 font-semibold text-xs">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
                     3D Interactive
@@ -1086,8 +1088,11 @@ function Index() {
               <Tilt3D className="contact-info h-full">
                 <ul className="contact-list">
                   {[
+                    { I: Phone, v: "+962 7 9571 1148", h: "tel:+962795711148", ltr: true },
                     { I: Phone, v: "+962 79 7440088", h: "tel:+962797440088", ltr: true },
+                    { I: Mail, v: "info@deltaplast.jo", h: "mailto:info@deltaplast.jo", ltr: true },
                     { I: Mail, v: "sales@deltaplast.jo", h: "mailto:sales@deltaplast.jo", ltr: true },
+                    { I: Mail, v: "tariq0002@hotmail.com", h: "mailto:tariq0002@hotmail.com", ltr: true },
                     { I: MapPin, v: t.loc, h: MAP, ltr: false },
                   ].map(({ I, v, h, ltr }) => (
                     <li key={h}>
